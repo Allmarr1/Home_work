@@ -1,0 +1,70 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install aptitude
+      apt:
+        name: aptitude
+        state: latest
+        update_cache: true
+
+    - name: Install required system packages
+      apt:
+        pkg:
+          - apt-transport-https
+          - ca-certificates
+          - curl
+          - software-properties-common
+          - python3-pip
+          - virtualenv
+          - python3-setuptools
+        state: latest
+        update_cache: true
+
+    - name: Add Docker GPG apt Key
+      apt_key:
+        url: https://download.docker.com/linux/ubuntu/gpg
+        state: present
+
+    - name: Add Docker Repository for Ubuntu 22.04 (Jammy)
+      apt_repository:
+        repo: deb https://download.docker.com/linux/ubuntu jammy stable
+        state: present
+
+    - name: Update apt and install docker-ce
+      apt:
+        name: docker-ce
+        state: latest
+        update_cache: true
+
+    - name: Make sure a service docker is running
+      systemd:
+        state: started
+        enabled: yes
+        name: docker
+
+    - name: Change file ownership, group and permissions
+      file:
+        path: /opt/work
+        state: directory
+        mode: '0755'
+
+    - name: git clone
+      git:
+        repo: https://github.com/Allmarr1/react-redux-realworld-example-app.git
+        dest: /opt/work
+
+    - name: docker build
+      shell: docker build -t test /opt/work/
+
+    - name: docker run
+      shell: docker run -d --restart always -p 8080:4100 test
+
+    - name: get status code
+      shell: curl --silent -i http://0.0.0.0:8080 | head -n 1 | cut -d" " -f2
+      register: message
+
+    - name: show message msg
+      debug:
+        msg: "The URL http://0.0.0.0:8080 returned {{ message.stdout }}"

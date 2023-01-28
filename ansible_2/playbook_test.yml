@@ -1,0 +1,51 @@
+---
+- hosts: all
+  become: true
+
+  tasks:
+    - name: Install required system packages for VSCode
+      apt:
+        pkg:
+          - apt-transport-https
+          - software-properties-common
+          - python3-pip
+          - wget
+          - build-essential
+          - libssl-dev
+          - libffi-dev
+          - python3-dev
+          - python3
+        state: latest
+        update_cache: true
+
+    - name: Add VSCode apt Key
+      apt_key:
+        url: https://packages.microsoft.com/keys/microsoft.asc
+        state: present
+
+    - name: Add VSCode Repository
+      apt_repository:
+        repo: deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main
+        state: present
+
+    - name: Update apt and install code
+      apt:
+        name: code
+        state: latest
+        update_cache: true
+
+    - name: Change file ownership, group and permissions
+      file:
+        path: /opt/repo
+        state: directory
+        mode: '0755'
+
+    - name: git clone
+      git:
+        repo: https://github.com/Allmarr1/Home_work.git
+        dest: /opt/repo
+
+    - name: install pip requirements
+      pip:
+        requirements: /opt/repo/homework_python/requirements.txt
+        executable: pip3
