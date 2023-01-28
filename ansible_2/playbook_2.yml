@@ -37,7 +37,7 @@
         name: docker-ce
         state: latest
         update_cache: true
-
+        
     - name: Make sure a service docker is running
       systemd:
         state: started
@@ -60,11 +60,14 @@
 
     - name: docker run
       shell: docker run -d --restart always -p 8080:4100 test
+             
+    - shell: sleep 5
 
-    - name: get status code
-      shell: curl --silent -i http://0.0.0.0:8080 | head -n 1 | cut -d" " -f2
-      register: message
-
-    - name: show message msg
+    - name: Url
+      uri:
+        url: http://0.0.0.0:8080
+      register: this
+      
+    - name: debug
       debug:
-        msg: "The URL http://0.0.0.0:8080 returned {{ message.stdout }}"
+        msg: "The URL http://0.0.0.0:8080 returned {{ this.status }}"   
