@@ -1,73 +1,44 @@
-"""
-згенерувати квадратну матрицю 'око' - всі значення 0-лі а по діагоналі 1ки
-
-"""
-
-def eye_matrix(size):
-    pass
-
-assert eye_matrix(3) == [[1, 0, 0], [0, 1, 0], [0, 0, 1]]
-assert eye_matrix(4) == [[1, 0, 0, 0], [0, 1, 0, 0], [0, 0, 1, 0], [0, 0, 0, 1]]
-
-"""
-Написати програму яка знаходить друге найменше число в списку. 
-1) з використанням методів списків, та вбудованих функцій
-2) без використання методів списків
-"""
-
-def second_smallest(array):
-    pass
-
-assert second_smallest([1, 1, 2, 2, 3]) == 2
-assert second_smallest([-1, 10, -2, 2]) == -1
-
-"""
-написати програму яка перетворює список на строку
-1) без методів строк 
-2) з =)
-"""
-
-def list_to_string(array):
-    pass
-
-assert list_to_string(["l", "i", "s", "t"]) == "list"
-assert list_to_string(["l", "i", "s", "t", 5, 1.1]) == "list51.1"
-
-"""
-написати програму, яка приймає два списки та видає новий список зі спільними унікальними елементами
-"""
-
-def list_intercection(list1, list2):
-    pass
-
-assert list_intercection([1, 1, 1, 2], [1, 3, 4]) == [1, ]
-assert list_intercection(["foo", 1, "bar"], [2, 3, 4]) == None
-assert list_intercection(["foo", 1, "bar"], []) == None
-assert list_intercection(["foo", 1, "bar"], [4, "foo", 7]) == ["foo", ]
-
-"""
-Із списку, цілі числа з'єднати в одне число
-варіант із зірочкою - заборонено переведення із строкового в числовий тип і навпаки
-"""
-
-def join_ints(my_list):
-    pass
-
-assert join_ints([1, 2, 3]) == 123
-assert join_ints([1, "foo", 2.5, 1, 1, 4, "abr", 3]) == 11143
-
-"""
-Реалізувати метод строк split() самостійнр
-"""
-def my_split():
-    pass
-
-assert my_split("Karamba", "a") == ['K', 'r', 'mb', '']
-
-"""
-Бонусне завдання
-Взяти програму повернення матриці з лекції, та зробити на її основі фунцію, що повертає матрицю, на довільне(кратне 90)
-число градусув. Асерти на вас.
+Облаштувати Переведення валют в обмінику через словник(приклад структури на гітхабі)
+Загорнути код що робить конвертацію та розраховує курс продажу в фунції.
+В словнику дані кількість купюр кожного номіналу. Зробити фунцію яка перевіряє чи вистачить коштів чи купюр щоб обміняти гроші..
 
 
-"""
+
+
+
+
+
+
+AUH_EUR_BUY = 42.00
+AUH_USD_BUY = 40.00
+AUH_PLN_BUY = 30.00
+AUH_EUR_CELL = AUH_EUR_BUY + (AUH_EUR_BUY * 0.05)
+AUH_USD_CELL = AUH_USD_BUY + (AUH_USD_BUY * 0.05)
+AUH_PLN_CEll = AUH_PLN_BUY + (AUH_PLN_BUY * 0.05)
+PROFIT_PRC = 5#5%
+
+current ={
+    "UAH": {
+        "buy":{
+            "USD":40,
+            "EUR":36,
+            "PLN":6,
+        },
+        "sell": {}
+    }
+}
+currency = {100:2, 50:10, 20:0, 10:0, 5:100, 2:10, 1:10}
+
+print(f"{'':*^15}")
+print(f"{'*BUY':<5}{'':5}{'SELL*':>5}")
+print(f"*{AUH_EUR_BUY:<5}{'EUR':^3}{AUH_EUR_CELL:>5}*")#loop
+print(f"*{AUH_USD_BUY:<5}{'USD':^3}{AUH_USD_CELL:>5}*")#loop
+print(f"*{AUH_PLN_BUY:<5}{'PLN':^3}{AUH_PLN_CEll:>5}*")#loop
+print(f"{'':*^15}")
+
+val_uah = float(input("Введіть кількість гривень, яку ви хочете продати: "))
+result = val_uah // AUH_USD_BUY
+remain = val_uah % AUH_USD_BUY
+
+print(f"Ваша валютa {result} дол")
+print(f"Ваша решта {remain:>7} грн")
