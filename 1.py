@@ -1,27 +1,116 @@
-def check_parenthes(string):
-    test = '[]{}()'
-    stack = []
-    for char in string:
-        if char in test:
-            if char == "(":
-                stack.append(char)
-            else:
-                try:
-                    if stack[-1] == "(":
-                        stack.pop()
-                except IndexError:
-                    stack.append(char)
-    if len(stack) > 0:
-        return False
-    return True
+"""
+Шифр цезаря. На вхід подається число, на яке зсувається алфавіт. Розшифруйте повідомлення. 
+Бонус- зробіть декоратор який шифрує повідомлення шифром цезаря.
+"""
+def cesar_code(input_data):
+    pass
+
+assert cesar_code((1,"az")) == "zy"
+
+def absolute_diff(input_data):
+    pass
+
+assert absolute_diff(([1,2,2,1], 1)) == 4
+"""
+Explanation: The pairs with an absolute difference of 1 are:
+- [1,2,2,1]
+- [1,2,2,1]
+- [1,2,2,1]
+- [1,2,2,1]
+"""
+
+"""
+Дана валідна IPv4 адресса.
+повернути обеззублену адресу
+
+Про обеззублені адреси
+https://www.tutorialspoint.com/defanged-version-of-internet-protocol-address
+
+* Бонусом, перевірити валідність ай-пі адреси.
+"""
+def defanged_ip(input_data):
+    pass
+
+assert defanged_ip("1.1.1.1") == "1[.]1[.]1[.]1"
+
+"""
+*нічого не нав'язую, але хтось пошипки каже :"Стееееек"*
+Розбити строку на балансні строки.
+балансні це ті в яких однакова кількість символів "L" та "R"
+асерти самостійно
+"""
+
+"""
+Написати програму перемноження матриць. Асерти самі
+"""
+
+Згенерувати 100 випадкових цілих чисел, записати їх в csv(10 стовбчиків) та json(10 строк по 10 чисел)
+Зчитати данні зі двох істочників. Підрахувати середне за кожною строкою з кожного файлу. Вивести результат в таблику
+ на екран типу:
+
+ lineNum json_ave csv_ave
+       0   10        11
+       1   12        44
+"""
+
+
+#task1
+"""
+Написати програму Що складає, віднімає, робить скалярний і векторний додаток над векторами
+асерти пишите самі
+"""
+
+#task2
+"""
+Реальзувати метод підрахунку довжин ліній. зробити метод компаре, який буде зрівнювати лінії і казатит яка довша
+"""
+
+#task3
+"""
+В відриві від проекту обміника написати програму через класс, яка складає сумму декількох валют та виводить у іншій.
+Для простоти гривня, долар, евро, злотий
+"""
+
+class Currency()
+    pass
+
+my_saving = Currency(33, 100, 200, 100)# 4 наших валюти
+my_saving.summary() - виводить мій банк в різних валютах як є
+my_saving.UAH - скільки окрмої валюти
+my_saving.eqvival("UAH") - 33, 100, 200, 100 - загалом в гривнях\чи інших з 4
+my_saving == your_saving - true якщо сумми в еквіваленті рівні
+my_saving + your_saving ....
+
+#task4
+"""
+typing на клас каренсі та класл Ленс
+"""
+#task1
+"""розрзаховувалась вагова категорі бійця
+додати до рекорду бійця поразку чи перемогу, нічию
+написати красивий репр
+Збобити десь інтсанців боксерів з випадковими величинами ростру, ваги, рекордів, віку
+,nickname - 5 реальних боесерів 5 імен тварин 5 прикметників
+"""
+
+class Fighter():
+
+    def __init__(self):
+        self.style
+        self.record
+        self.nickname
 
 
 
-# assert check_parenthes("(())") == True
-# assert check_parenthes(")(") == False
-# assert check_parenthes("()(") == False
-# assert check_parenthes(")())") == False
-# assert check_parenthes("")
-assert check_parenthes("asasa(dsdsd)(") == False
-# assert check_parenthes("skaslka[{ddfdfsdd}()]") ==True
-# assert check_parenthes("}{kdlsds(p[])") == False
+
+class Boxedr(Person, Fighter):
+    pass
+
+#tack 2
+"""
+Написати програму яка будує прямокутник(вершини), коло за заданими точками(центр і точка на колі в вм=ипаду кола), трикутник
+кожна фігура має вміти рахувати периметр, площу, та перевірку на правильність введених вершин
+"""
+
+
+
